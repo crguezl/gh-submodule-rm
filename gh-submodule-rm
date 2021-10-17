@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -e
+
+echo "Hello gh-submodule-rm!"
+
+git deinit -f $1
+git rm -fr $1
+rm -fR .git/modules/$1
+
+#or 
+
+# we can do this 
+# git config -f .git/config --remove-section submodule.$1
+# or this ...
+
+
+# git deinit [-f|--force] (--all|[--] <path>...)
+#           Unregister the given submodules, i.e. remove the whole submodule.$name section from .git/config
+#           together with their work tree.
+
+# Snippets to help get started:
+
+# Determine if an executable is in the PATH
+# if ! type -p ruby >/dev/null; then
+#   echo "Ruby not found on the system" >&2
+#   exit 1
+# fi
+
+# Pass arguments through to another command
+# gh issue list "$@" -R cli/cli
+
+# Using the gh api command to retrieve and format information
+# QUERY='
+#   query($endCursor: String) {
+#     viewer {
+#       repositories(first: 100, after: $endCursor) {
+#         nodes {
+#           nameWithOwner
+#           stargazerCount
+#         }
+#       }
+#     }
+#   }
+# '
+# TEMPLATE='
+#   {{- range $repo := .data.viewer.repositories.nodes -}}
+#     {{- printf "name: %s - stargazers: %v\n" $repo.nameWithOwner $repo.stargazerCount -}}
+#   {{- end -}}
+# '
+# exec gh api graphql -f query="${QUERY}" --paginate --template="${TEMPLATE}"
