@@ -3,6 +3,9 @@ set -e
 
 while [ "$1" != "" ]
 do
+    # Unregister the given submodules, 
+    # i.e. remove the whole submodule.$name section from .git/config
+    # together with their work tree.
     git submodule deinit -f $1 && \
     git rm -fr $1 && \
     rm -fR .git/modules/$1;
