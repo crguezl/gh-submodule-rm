@@ -4,7 +4,7 @@ set -e
 while [ "$1" != "" ]
 do
     git submodule deinit -f $1 && \
-    git rm -fr $1 && \\
+    git rm -fr $1 && \
     rm -fR .git/modules/$1;
     shift;
 done
