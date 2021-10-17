@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-echo "Hello gh-submodule-rm!"
-
-git deinit -f $1
+git submodule deinit -f $1
 git rm -fr $1
 rm -fR .git/modules/$1
 
